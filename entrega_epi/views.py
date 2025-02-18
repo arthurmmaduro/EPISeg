@@ -6,6 +6,7 @@ from django.core.files.base import ContentFile
 from django.views.generic import ListView, CreateView,View
 from django.utils.encoding import smart_str
 import os
+import requests
 from io import BytesIO
 from datetime import datetime
 from docx import Document
@@ -79,9 +80,23 @@ class GerarFormularioEPIView(View):
         epis = [entrega.epi for entrega in entregas]
 
         # Caminho para o modelo do documento
-        modelo_path = default_storage.url("documentos/Ficha de Entrega de EPIs - formulário.docx")
-        if not os.path.exists(modelo_path):
-            raise FileNotFoundError(f"Arquivo do modelo não encontrado: {modelo_path}")
+        modelo_url = default_storage.url("documentos/Ficha de Entrega de EPIs - formulário.docx")
+        
+        response = requests.head(modelo_url)
+
+        if response.status_code != 200:
+            raise FileNotFoundError(f"Arquivo do modelo não encontrado: {modelo_url}")
+
+        # Fazer o download do arquivo
+        response = requests.get(modelo_url)
+        if response.status_code == 200:
+            temp_path = "/tmp/modelo.docx"  # Caminho temporário no servidor Render
+            with open(temp_path, "wb") as f:
+                f.write(response.content)
+
+            modelo_path = temp_path  # Agora o arquivo pode ser acessado localmente
+        else:
+            raise FileNotFoundError(f"Erro ao baixar o modelo do GCS: {modelo_url}")
 
         # Carregar o documento Word
         doc = Document(modelo_path)
