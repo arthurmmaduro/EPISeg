@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from google.oauth2 import service_account
+import json
 
 load_dotenv()
 
@@ -151,11 +152,20 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 )
 
+GOOGLE_CREDENTIALS_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+
+if GOOGLE_CREDENTIALS_JSON:
+    credentials_info = json.loads(GOOGLE_CREDENTIALS_JSON)  # Converte a string JSON em um dicionário Python
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_info)
+else:
+    GS_CREDENTIALS = None
+
 # Nome do seu bucket no Google Cloud Storage
 GS_BUCKET_NAME = "bucket-epis"
 
 # Configuração do backend de armazenamento de arquivos no Django
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
 GS_DEFAULT_ACL = "publicRead"  # Permite acesso público aos arquivos (caso necessário)
 
 # URLs dos arquivos de mídia
