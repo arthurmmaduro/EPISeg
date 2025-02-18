@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'epis/epi_adicionar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <h1>Adicionar EPI</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Nome e Número do CA -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_nome">Nome do EPI</label>
+                {{ form.nome }}
+            </div>
+            <div class="form-group">
+                <label for="id_numero_ca">Número do CA</label>
+                {{ form.numero_ca }}
+            </div>
+        </div>
+        <!-- Modelo e Validade do CA -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_modelo">Modelo</label>
+                {{ form.modelo }}
+            </div>
+            <div class="form-group">
+                <label for="id_validade_ca">Validade do CA</label>
+                {{ form.validade_ca }}
+            </div>
+        </div>
+        <!-- Fabricante e Arquivo do CA -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_fabricante">Fabricante</label>
+                {{ form.fabricante }}
+            </div>
+            <div class="form-group">
+                <label for="id_arquivo_ca">Arquivo do CA</label>
+                {{ form.arquivo_ca }}
+            </div>
+        </div>
+        <!-- Categoria -->
+        <div class="form-group">
+            <label for="id_categoria">Categoria</label>
+            {{ form.categoria }}
+        </div>
+        <!-- Descrição -->
+        <div class="form-group">
+            <label for="id_descricao">Descrição</label>
+            {{ form.descricao }}
+        </div>
+        <!-- Botões -->
+        <div class="botao">
+            <button type="submit" class="botao-salvar">Salvar</button>
+            <a href="{% url 'epis_lista' %}" class="botao-voltar">Cancelar</a>
+        </div>
+    </form>
+</div>   
+{% endblock %}

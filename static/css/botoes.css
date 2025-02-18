@@ -1,0 +1,78 @@
+/* Estilo geral para a div dos botões */
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center; /* Alinha os botões horizontalmente */
+    align-items: center;    /* Alinha os botões verticalmente */
+    text-align: center;     /* Centraliza o texto */
+}
+
+/* Botões de Adicionar e Editar */
+.botao-adicionar, .botao-editar {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao-adicionar:hover, .botao-editar:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+}
+
+/* Botão Excluir */
+.botao-excluir {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao-excluir:hover {
+    background-color: #a71d2a; /* Vermelho mais escuro */
+}
+
+/* Botão Voltar */
+.botao-voltar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao-voltar:hover {
+    background-color: #5a6268; /* Cinza mais escuro */
+}
+
+/* Botões de Salvar e Importar */
+.botao-salvar, .botao-importar {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao-salvar:hover, .botao-importar:hover {
+    background-color: #1e7e34; /* Verde mais escuro */
+}

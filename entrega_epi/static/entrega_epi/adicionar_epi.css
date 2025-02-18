@@ -1,0 +1,89 @@
+/* Contêiner principal */
+.conteudo {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    
+    color: #333; /* Cor do texto padrão */
+}
+
+/* Cabeçalho principal */
+.conteudo h1 {
+    font-size: 24px;
+    color: #007bff; /* Azul principal */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Subtítulos */
+.conteudo h3 {
+    font-size: 18px;
+    color: #555;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Formulários */
+.conteudo form {
+    margin-bottom: 20px;
+}
+
+.conteudo form button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.conteudo form button:hover {
+    background-color: #1e7e34; /* Verde mais escuro */
+}
+
+/* Lista de EPIs entregues */
+.conteudo ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.conteudo ul li {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Link para voltar */
+.conteudo a {
+    display: block;
+    text-align: center;
+    background-color: #007bff; /* Azul principal */
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px auto;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+.conteudo a:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+}

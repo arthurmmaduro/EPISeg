@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'colaboradores/colaboradores_lista.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <div class="busca">
+
+    </div>
+    <div class="content_list">
+        {% if colaboradores %}
+        {% for colaborador in colaboradores %}
+        <li class="lista">
+            <a href="{% url 'colaborador_detalhes' colaborador.slug %}" class="nome__lista">{{ colaborador.nome }}</a>
+        </li>    
+        {% endfor %}
+        {% else %}
+            <p>Não há colaboradores cadastrados.</p>
+        {% endif %}
+        
+    </div>
+    <div class="botoes">
+        <a href="{% url 'colaborador_adicionar' %}" class="botao-adicionar">Adicionar Colaborador</a>
+        <a href="" class="botao-salvar" class="botao-importar">Importar</a>
+    </div>   
+</div>
+{% endblock %}

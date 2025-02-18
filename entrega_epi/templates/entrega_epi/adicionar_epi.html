@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'entrega_epi/adicionar_epi.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <h1>Adicionar EPI para: {{ colaborador.nome }}</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+
+        <h3>EPIs já entregues:</h3>
+        <ul>
+        {% for entrega in entregas %}
+            <li>{{ entrega.epi.nome }} - Data de Entrega: {{ entrega.data_entrega }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="{% url 'limpar_entregas' colaborador.slug %}">
+        {% csrf_token %}
+        <button type="submit">Limpar Lista</button>
+    </form>
+
+    <form method="get" action="{% url 'gerar_formulario' colaborador.slug %}">
+        <button type="submit" >Gerar Ficha de Entrega de EPI</button>
+    </form>
+    <section class="ficha-epi">
+        <h2>Ficha de EPI</h2>
+    
+          
+        <!-- Exibir botão de apagar se a ficha recente existir -->
+        {% if ficha_recente %}
+            <form action="{% url 'ficha_apagar' ficha_recente.id %}" method="post" style="margin-top: 10px;">
+                {% csrf_token %}
+                <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja apagar esta ficha?')">
+                    Apagar Ficha
+                </button>
+            </form>
+        {% else %}
+            <p>Nenhuma ficha de EPI gerada ainda.</p>
+        {% endif %}
+    </section>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+    <a href="{% url 'entrega_lista' %}">Voltar para a lista de colaboradores</a>
+
+</div>
+    {% endblock %}

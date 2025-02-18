@@ -1,0 +1,44 @@
+
+.conteudo {
+    width: 100%;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5em;
+    color: #333;
+}
+.form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+label {
+    font-weight: bold;
+    color: #555;
+}
+input, select {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Borda para consistência com o focus */
+    border-radius: 5px;
+    background: var(--input);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Suaviza as alterações */
+}
+
+input:focus, select:focus {
+    border-color: var(--cor-primaria); /* Cor da borda ao focar */
+    box-shadow: 0 0 5px var(--cor-primaria); /* Efeito de destaque */
+    outline: none; /* Remove o outline padrão */
+    background-color: #fff; /* Fundo branco ao focar */
+}
+

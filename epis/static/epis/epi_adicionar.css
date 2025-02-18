@@ -1,0 +1,61 @@
+.conteudo {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--cor-primaria);
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: var(--cor-primaria);
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+input, select, textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--input);
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+input[type="file"] {
+    padding: 5px;
+}
+

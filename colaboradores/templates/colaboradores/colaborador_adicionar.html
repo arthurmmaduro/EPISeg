@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'colaboradores/colaborador_adicionar.css' %}">
+    <link rel="stylesheet" href="{%% static ''}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <h1 class="titulo">Cadastrar Colaborador</h1>
+    <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Nome -->
+        <div class="form-group">
+            <label for="id_nome">Nome Completo</label>
+            {{ form.nome }}
+        </div>
+        <!-- CPF -->
+        <div class="form-group">
+            <label for="id_cpf">CPF</label>
+            {{ form.cpf }}
+        </div>
+        <!-- Data de Nascimento -->
+        <div class="form-group">
+            <label for="id_data_nascimento">Data de Nascimento</label>
+            {{ form.data_nascimento }}
+        </div>
+        <!-- Cargo -->
+        <div class="form-group">
+            <label for="id_cargo">Cargo</label>
+            {{ form.cargo }}
+        </div>
+        <!-- E-mail -->
+        <div class="form-group">
+            <label for="id_email">E-mail</label>
+            {{ form.email }}
+        </div>
+        <!-- Telefone -->
+        <div class="form-group">
+            <label for="id_telefone">Telefone</label>
+            {{ form.telefone }}
+        </div>
+        <!-- Botão de Enviar -->
+        <div class="botoes">
+            <button type="submit" class="botao-salvar">Salvar</button>
+            <a href="{% url 'colaboradores_lista' %}" class="botao-voltar">Voltar</a>
+        </div>
+    </form>
+    
+</div>
+
+{% endblock %}

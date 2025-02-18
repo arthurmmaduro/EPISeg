@@ -1,0 +1,53 @@
+@import url('/static/css/variables.css');
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--cor-secundaria);
+    font-family: var(--font-family-primary);
+    justify-content: center; /* Centraliza o conteúdo no eixo vertical */
+    align-items: center; /* Centraliza o conteúdo no eixo horizontal */
+}
+
+.main {
+    display: flex;
+    background-color: var(--cor-texto);
+    height: 70vh;
+    width: 80%;
+    margin: 5vh 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+    width: 12px;
+}
+
+.main::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Fundo da trilha */
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: #888; /* Cor do "polegar" */
+    border-radius: 6px;
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cor no hover */
+}
+
+
+.content {
+    padding: 2em;
+}
+
+
+.lista-item {
+    text-decoration: none;
+    color: var(--cor-primaria);
+    font-size: 500;
+}
+
+

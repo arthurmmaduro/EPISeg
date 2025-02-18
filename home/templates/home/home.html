@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'home/home.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    
+    {% include 'partials/header.html' %}
+    
+    
+    <div class="main-layout">
+        <nav class="navbar">
+            <ul>
+                <h2 class="menu-titulo">Menu</h2>
+                <li class="menu-item"><a href="{% url 'colaboradores_lista' %}" class="menu-item__link">Colaboradores</a></li>
+                <li class="menu-item"><a href="{% url 'epis_lista' %}" class="menu-item__link">EPIs</a></li>
+                <li class="menu-item"><a href="{% url 'entrega_lista' %}" class="menu-item__link">Entregas</a></li>
+                <li class="menu-item"><a href="" class="menu-item__link">Relatórios</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h1>Bem vindo ao sistema</h1>
+            <p>O conteúdo principal será exibido aqui no futuro.</p>
+        </main>
+    </div>
+
+    {% include 'partials/footer.html' %}
+    
+</body>
+</html>

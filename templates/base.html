@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/botoes.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+    <title>Home</title>
+</head>
+<body>
+   
+    {% include 'partials/header.html' %}
+
+    <div class="main">  
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'partials/footer.html' %}
+     
+</body>
+</html>

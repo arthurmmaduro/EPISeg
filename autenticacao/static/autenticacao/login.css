@@ -1,0 +1,125 @@
+@import url('/static/css/variables.css');
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--cor-secundaria);
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    height: 50%;
+    background-color: var(--cor-texto);
+    border-radius: 15px;
+    position: relative;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    background-color: var(--cor-primaria);
+    width:40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.first__column {
+    text-align: center;
+    flex: 1 0 auto;
+    z-index: 10;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform:capitalize;
+}
+
+.title_welcome {
+    color: var(--cor-texto);
+}
+
+.title-messages {
+    font-size: 4px
+} 
+
+.description {
+    color: var(--cor-texto);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
+}
+.second__column {
+    display: flex;
+    flex: 2 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title__login {
+    color: var(--cor-primaria);
+}
+
+.label-input {
+    background-color: var(--cor-secundaria);
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    border-radius: 5px;
+}
+
+.icon-modify {
+    color: var(--cor-fundo);
+    padding: 0 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+
+}
+ .form input {
+    height: 45px;
+    border: none;
+    background-color: var(--cor-secundaria);
+    width: 100%;
+   
+ }
+
+ .lembrar-senha {
+    color: var(--cor-fundo);
+    align-self: center;
+    margin-top: 1rem;
+    
+ }
+
+.btn {
+    border-radius: 15px;
+    color: var(--cor-primaria);
+    font-size: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    width: 150px;
+    font-weight: bold;
+    align-self: center;
+    margin-top: 1rem;
+}
+ 
+.btn__sign {
+    color: var(--cor-texto);
+    background-color: var(--cor-primaria);
+    border: none;
+}
+
+.btn__sign:hover {
+    color: var(--cor-primaria);
+    background-color:var(--cor-texto);
+    border: #58af9b 1px solid;
+}

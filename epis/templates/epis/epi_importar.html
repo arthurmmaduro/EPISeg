@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'epis/epi_importar.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="conteudo">
+        <div class="form-container">
+            <h1>Importar Arquivo de EPIs</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Campo de Upload de Arquivo -->
+                <div class="form-group">
+                    <label for="{{ form.arquivo.id_for_label }}">{{ form.arquivo.label }}</label>
+                    {{ form.arquivo }}
+                    <small class="help-text">{{ form.arquivo.help_text }}</small>
+                </div>
+                <!-- Botão de Submissão -->
+                <div class="botao">
+                    <button type="submit" class="botao-importar">Importar</button>
+                    <a href="{% url 'epis_lista' %}" class="botao-voltar">Voltar</a>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+    
+    {% endblock %}
+    

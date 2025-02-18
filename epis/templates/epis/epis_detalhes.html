@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'epis/epis_detalhes.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="conteudo">
+        <h1 class="titulo">Informações do EPI</h1>
+        <form class="form">
+            <!-- Nome -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_nome"><strong>Nome:</strong></label>
+                    <div class="form-control">{{ epi.nome }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="id_numero_ca"><strong>CA Número:</strong></label>
+                    <div class="form-control">
+                        {% if epi.arquivo_ca %}
+                            <a href="{{ epi.arquivo_ca.url }}" target="_blank" class="link-ca">
+                                {{ epi.numero_ca }}
+                            </a>
+                        {% else %}
+                            {{ epi.numero_ca }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Modelo e Validade do CA -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_modelo"><strong>Modelo:</strong></label>
+                    <div class="form-control">{{ epi.modelo }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="id_validade_ca"><strong>Validade do CA:</strong></label>
+                    <div class="form-control">{{ epi.validade_ca }}</div>
+                </div>
+            </div>
+            <!-- Fabricante e Categoria -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_fabricante"><strong>Fabricante:</strong></label>
+                    <div class="form-control">{{ epi.fabricante }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="id_categoria"><strong>Categoria:</strong></label>
+                    <div class="form-control">{{ epi.categoria }}</div>
+                </div>
+            </div>
+            <!-- Descrição -->
+            <div class="form-group">
+                <label for="id_descricao"><strong>Descrição:</strong></label>
+                <div class="form-control">{{ epi.descricao }}</div>
+            </div>
+        </form>
+            <div class="botoes">
+                <a href="{% url 'epi_editar' epi.slug %}" class="botao-editar">Editar</a>
+                        
+                <form action="{% url 'epi_excluir' epi.slug %}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este EPI?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <a href="{% url 'epis_lista' %}" class="botao-voltar">Volvar</a>
+            </div>
+        
+    </div>
+    
+    {% endblock %}
+    

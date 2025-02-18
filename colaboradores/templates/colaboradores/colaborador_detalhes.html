@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'colaboradores/colaborador_detalhes.css' %}">
+{% endblock %}
+
+{% block content%}
+<div class="conteudo">
+    <h1 class="titulo">Detalhes do Colaborador</h2>
+    <div class="detalhes">
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">Nome Completo:</span>
+            <span class="detalhe-valor">{{ colaborador.nome }}</span>
+        </div>
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">CPF:</span>
+            <span class="detalhe-valor">{{ colaborador.cpf }}</span>
+        </div>
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">Data de Nascimento:</span>
+            <span class="detalhe-valor">{{ colaborador.data_nascimento }}</span>
+        </div>
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">Cargo:</span>
+            <span class="detalhe-valor">{{ colaborador.cargo }}</span>
+        </div>
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">E-mail:</span>
+            <span class="detalhe-valor">{{ colaborador.email }}</span>
+        </div>
+        <div class="detalhe-item">
+            <span class="detalhe-titulo">Telefone:</span>
+            <span class="detalhe-valor">{{ colaborador.telefone }}</span>
+        </div>
+    </div>
+    <div class="botoes">
+        <a href="{% url 'colaborador_editar' colaborador.slug %}" class="botao-adicionar">Editar</a>
+        <form action="{% url 'colaborador_excluir' colaborador.slug %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="botao-excluir">Excluir</button>
+        </form>
+        <a href="{% url 'colaboradores_lista' %}" class="botao-voltar">Voltar</a>
+    </div>
+</div>
+{% endblock %}

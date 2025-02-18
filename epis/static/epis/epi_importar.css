@@ -1,0 +1,53 @@
+/* Contêiner Principal */
+.conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Centralizar Itens na Form-Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.form-group label,
+.form-group input,
+.form-group .help-text {
+    width: 80%; /* Define a largura fixa para centralizar */
+    text-align: center; /* Centraliza o texto */
+}
+
+input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+

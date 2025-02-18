@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'entrega_epi/entrega_lista.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteudo">
+    <div class="busca">
+        <!-- Campo de busca pode ser adicionado aqui -->
+    </div>
+    <div class="content_list">
+        {% if colaboradores %}
+            <ul>
+                {% for colaborador in colaboradores %}
+                    <li class="lista">
+                        <a href="{% url 'adicionar_epi' colaborador.slug %}" class="nome__lista">
+                            {{ colaborador.nome }}
+                        </a>
+                        <!-- Check para EPIs atribuídos -->
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" disabled {% if colaborador.tem_epis %}checked{% endif %}>
+                                Tem EPIs atribuídos
+                            </label>
+                        </div>
+                        <!-- Check para Ficha de EPI gerada -->
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" disabled {% if colaborador.fichas_epi.exists %}checked{% endif %}>
+                                Ficha de EPI gerada
+                            </label>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Não há colaboradores cadastrados.</p>
+        {% endif %}
+    </div>
+    <div class="botoes">
+        <!-- Botões de ação podem ser adicionados aqui -->
+    </div>   
+</div>
+{% endblock %}

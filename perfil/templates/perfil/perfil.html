@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="perfil-container">
+    <h1>Bem-vindo, {{ colaborador.nome }}</h1>
+
+    <!-- Informações do perfil -->
+    <section class="perfil-informacoes">
+        <h2>Suas Informações</h2>
+        <ul>
+            <li><strong>Nome:</strong> {{ colaborador.nome }}</li>
+            <li><strong>CPF:</strong> {{ colaborador.cpf }}</li>
+            <li><strong>Data de Nascimento:</strong> {{ colaborador.data_nascimento|date:"d/m/Y" }}</li>
+            <li><strong>Cargo:</strong> {{ colaborador.cargo }}</li>
+            <li><strong>E-mail:</strong> {{ colaborador.email }}</li>
+            <li><strong>Telefone:</strong> {{ colaborador.telefone }}</li>
+        </ul>
+    </section>
+
+    <!-- EPIs Recebidos -->
+    <section class="perfil-epi">
+        <h2>Ficha de EPI</h2>
+        {% if ficha_recente and ficha_recente.arquivo %}
+            <p>Ficha mais recente gerada em: {{ ficha_recente.data_geracao|date:"d/m/Y" }}</p>
+            <a href="{{ ficha_recente.arquivo.url }}" class="btn-download">Baixar Ficha</a>
+        {% else %}
+            <p>Você ainda não possui uma ficha de EPI gerada.</p>
+        {% endif %}
+    </section>
+    
+</div>
+{% endblock %}
