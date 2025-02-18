@@ -148,25 +148,24 @@ LOGIN_REDIRECT_URL = '/'
 
 BASE_URL = os.getenv('BASE_URL', 'http://127.0.0.1:8000')
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-)
-
+# Carregar as credenciais do Google Cloud Storage da variável de ambiente
 GOOGLE_CREDENTIALS_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
 
-if GOOGLE_CREDENTIALS_JSON:
-    credentials_info = json.loads(GOOGLE_CREDENTIALS_JSON)  # Converte a string JSON em um dicionário Python
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_info)
-else:
-    GS_CREDENTIALS = None
+GS_CREDENTIALS = None  # Definir um valor padrão
 
-# Nome do seu bucket no Google Cloud Storage
+if GOOGLE_CREDENTIALS_JSON:
+    try:
+        credentials_info = json.loads(GOOGLE_CREDENTIALS_JSON)  # Converte JSON string para dicionário
+        GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_info)
+    except json.JSONDecodeError as e:
+        print(f"Erro ao carregar credenciais JSON: {e}")
+
+# Nome do bucket no Google Cloud Storage
 GS_BUCKET_NAME = "bucket-epis"
 
-# Configuração do backend de armazenamento de arquivos no Django
+# Configuração do backend de armazenamento do Django para GCS
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_DEFAULT_ACL = "publicRead"  # Permite acesso público aos arquivos
 
-GS_DEFAULT_ACL = "publicRead"  # Permite acesso público aos arquivos (caso necessário)
-
-# URLs dos arquivos de mídia
+# URL base para acessar os arquivos no Google Cloud Storage
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
