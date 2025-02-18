@@ -19,7 +19,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = os.getenv('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -148,11 +148,11 @@ LOGIN_REDIRECT_URL = '/'
 BASE_URL = os.getenv('BASE_URL', 'http://127.0.0.1:8000')
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "caminho/local/para/o/arquivo.json")
+    os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 )
 
 # Nome do seu bucket no Google Cloud Storage
-GS_BUCKET_NAME = "meu-bucket-epis"
+GS_BUCKET_NAME = "bucket-epis"
 
 # Configuração do backend de armazenamento de arquivos no Django
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
