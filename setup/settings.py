@@ -17,10 +17,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = True
 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'colaboradores.apps.ColaboradoresConfig',
     'perfil.apps.PerfilConfig',
     "debug_toolbar",
+    "django_cleanup.apps.CleanupConfig",
+    
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'autenticacao.middleware.LoginRequiredMiddleware',  
     'autenticacao.middleware.AdminAutoLoginMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-]
+    ]
 
 ROOT_URLCONF = 'setup.urls'
 
@@ -170,5 +172,45 @@ GS_DEFAULT_ACL = "publicRead"  # Permite acesso público aos arquivos
 # URL base para acessar os arquivos no Google Cloud Storage
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
 
+# Segurança
 
+SESSION_COOKIE_AGE = 1800  # Expira em 30 minutos
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SECURE_BROWSER_XSS_FILTER = True  # Protege contra XSS
+
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Evita que o navegador tente adivinhar o tipo de conteúdo
+
+SECURE_HSTS_SECONDS = 31536000  # Ativa HSTS por 1 ano
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Inclui subdomínios no HSTS
+
+SECURE_HSTS_PRELOAD = True  # Permite que o site seja listado em HSTS Preload List
+
+SECURE_SSL_REDIRECT = True  # Redireciona todo tráfego para HTTPS
+
+SESSION_COOKIE_SECURE = True  # Cookies apenas via HTTPS
+
+CSRF_COOKIE_SECURE = True  # Protege o cookie CSRF via HTTPS
+
+X_FRAME_OPTIONS = "DENY"  # Bloqueia Clickjacking
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'django_debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
