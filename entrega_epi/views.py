@@ -7,6 +7,7 @@ from django.views.generic import ListView, CreateView,View
 from django.utils.encoding import smart_str
 import os
 import requests
+import tempfile
 from io import BytesIO
 from datetime import datetime
 from docx import Document
@@ -71,20 +72,6 @@ class LimparEntregasView(View):
         EntregaColaboradorEPI.objects.filter(colaborador=colaborador).delete()
         return redirect('adicionar_epi', slug=slug)
 
-import requests
-import os
-import tempfile
-from datetime import datetime
-from io import BytesIO
-from django.http import HttpResponse
-from django.utils.encoding import smart_str
-from django.core.files.base import ContentFile
-from django.views import View
-from django.shortcuts import get_object_or_404
-from django.core.files.storage import default_storage
-from docx import Document
-from entrega_epi.models import EntregaColaboradorEPI, FichaEPI
-from colaboradores.models import Colaborador
 
 class GerarFormularioEPIView(View):
     def get(self, request, slug, *args, **kwargs):
@@ -93,20 +80,19 @@ class GerarFormularioEPIView(View):
         entregas = EntregaColaboradorEPI.objects.filter(colaborador=colaborador)
         epis = [entrega.epi for entrega in entregas]
 
-        # Caminho para o modelo do documento no Google Cloud Storage
+        # Caminho para o modelo do documento
         modelo_url = default_storage.url("documentos/Ficha de Entrega de EPIs - formulário.docx")
 
-        # Fazer o download do arquivo do GCS
         response = requests.get(modelo_url, stream=True)
         if response.status_code != 200:
             raise FileNotFoundError(f"Erro ao baixar o modelo do GCS: {modelo_url}")
 
-        # Criar um arquivo temporário seguro no servidor para armazenar o modelo
+        # Criar um arquivo temporário para armazenar o documento baixado
         with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_file:
             temp_file.write(response.content)
-            temp_file_path = temp_file.name  # Caminho do arquivo temporário
+            temp_file_path = temp_file.name
 
-        # Carregar o documento Word do arquivo temporário
+        # Abrir o documento Word corretamente
         doc = Document(temp_file_path)
 
         # Substituir os campos de texto na tabela
@@ -147,20 +133,14 @@ class GerarFormularioEPIView(View):
         # Nome do arquivo
         nome_arquivo = f'Ficha_EPI_{colaborador.nome}_{datetime.now().strftime("%Y%m%d%H%M%S")}.docx'
 
-        # Salvar a ficha no banco de dados e armazenar no Google Cloud Storage
+        # Salvar a ficha no banco de dados
         ficha = FichaEPI.objects.create(colaborador=colaborador)
         ficha.arquivo.save(nome_arquivo, ContentFile(doc_buffer.getvalue()))
 
         # Criar a resposta de download
-        response = HttpResponse(
-            doc_buffer.getvalue(),
-            content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        )
+        response = HttpResponse(doc_buffer.getvalue(), content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
         response['Content-Disposition'] = f'attachment; filename="{smart_str(nome_arquivo)}"'
-
-        # Fechar o buffer e excluir o arquivo temporário
         doc_buffer.close()
-        os.remove(temp_file_path)
 
         return response
 
