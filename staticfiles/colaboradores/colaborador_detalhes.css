@@ -1,0 +1,43 @@
+.conteudo {
+    width: 100%;
+    
+}
+
+/* Título */
+.titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5em;
+    color: #333;
+}
+
+/* Detalhes */
+.detalhes {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em; 
+}
+
+.detalhe-item {
+    display: flex;
+    flex-direction: column; /* Organiza o título e valor verticalmente */
+    gap: 0.5em;
+}
+
+.detalhe-titulo {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Caixa de valor */
+.detalhe-valor {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Borda para consistência com o focus */
+    border-radius: 5px;
+    background: var(--input);/* Leve sombra */
+}
+

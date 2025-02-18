@@ -1,0 +1,47 @@
+/* Estilo geral da página */
+.conteudo {
+    margin: 20px auto;
+    
+    padding: 20px;
+    
+}
+
+/* Estilo para a lista de colaboradores */
+.content_list {
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.lista {
+    list-style: none;
+    margin: 10px 0;
+    padding: 10px;
+   
+}
+
+.lista:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nome__lista {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+}
+
+.nome__lista:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Estilo para a mensagem quando não há colaboradores */
+.content_list p {
+    color: #888;
+    text-align: center;
+    font-size: 16px;
+    margin: 20px 0;
+}
+

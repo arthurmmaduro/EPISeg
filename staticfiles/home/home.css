@@ -1,0 +1,60 @@
+@import url('/static/css/variables.css');
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--cor-secundaria);
+    font-family: var(--font-family-primary);
+}
+
+.main-layout {
+    display: flex;
+}
+
+/* Menu Lateral */
+.navbar {
+    background-color: var(--cor-texto);
+    width: 15vw;
+    height: 75vh;
+    padding-top: 1em;
+    padding-left: 2em;
+}
+
+.menu-titulo {
+    color: var(--cor-primaria);
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.menu-item {
+    padding: 1em 0;
+}
+
+.menu-item__link {
+    color: var(--cor-primaria);
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Adiciona transição suave */
+    padding: 0.5em 1em; /* Aumenta área clicável */
+    display: inline-block; /* Necessário para usar transform */
+    border-radius: 5px; /* Cantos arredondados */
+}
+
+/* Hover para os links */
+.menu-item__link:hover {
+    background-color: var(--cor-primaria); /* Fundo verde */
+    color: var(--cor-texto); /* Texto branco */
+    transform: scale(1.05); /* Efeito de crescimento */
+    cursor: pointer; /* Indica interatividade */
+}
+
+/* Conteúdo principal */
+.content {
+    display: flex;
+    flex: 5 0 auto;
+    height: 80vh;
+    justify-content: center;
+    padding-top: 1em;
+}
+

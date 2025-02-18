@@ -1,0 +1,16 @@
+.cabecalho {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 12vh;
+    width: 100%;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cabecalho a:hover {
+    color: #ddd;
+}
