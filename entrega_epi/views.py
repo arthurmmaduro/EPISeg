@@ -15,6 +15,7 @@ from django.http import HttpResponse
 from entrega_epi.models import EntregaColaboradorEPI, FichaEPI
 from colaboradores.models import Colaborador
 from entrega_epi.models import FichaEPI
+from django.core.files.storage import default_storage
 
 # Create your views here.
 
@@ -78,7 +79,7 @@ class GerarFormularioEPIView(View):
         epis = [entrega.epi for entrega in entregas]
 
         # Caminho para o modelo do documento
-        modelo_path = os.path.join(settings.MEDIA_ROOT, 'documentos', 'Ficha de Entrega de EPIs - formulário.docx')
+        modelo_path = default_storage.url("documentos/Ficha de Entrega de EPIs - formulário.docx")
         if not os.path.exists(modelo_path):
             raise FileNotFoundError(f"Arquivo do modelo não encontrado: {modelo_path}")
 

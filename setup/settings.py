@@ -169,3 +169,6 @@ GS_DEFAULT_ACL = "publicRead"  # Permite acesso público aos arquivos
 
 # URL base para acessar os arquivos no Google Cloud Storage
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
+
+
+
